@@ -38,6 +38,8 @@ def check_winner():
         if (board[0][column]["text"] == board [1][column]["text"] ==board[2][column]["text"]
             and board [0][column]["text"] != ""):
             label.config(text=board[0][column]["text"]+" is the winner, foreground=color_yellow")
+            for column in range (3):
+                board[row][column].config(foreground=color_yellow)
             game_over = True
             return
 
@@ -51,7 +53,7 @@ board = [[0, 0, 0],
          [0, 0, 0], 
          [0, 0, 0]]
 
-color_purple = "#F7D2F4"
+color_black = "#000000"
 color_dark_blue = "#123CF8"
 color_yellow = "#DAFD15"
 color_light_blue = "#ADD8E6"
@@ -65,16 +67,16 @@ window.title("Tic Tac Toe")
 window.resizable(False, False)
 
 frame = tk.Frame(window)
-label = tk.Label(frame, text=curr_player+"'s turn", font=("Calibri", 20), background=color_purple, foreground="white")
+label = tk.Label(frame, text=curr_player+"'s turn", font=("Calibri", 20), background=color_black, foreground="white")
 
 label.grid(row=0, column=0, columnspan=3, sticky="we")
 
 for row in range(3):
     for column in range(3):
-        board[row][column] = tk.Button(frame, text="", font=("Calibri", 50, "bold"), background=color_purple, foreground=color_dark_blue, width=4, height=1, command=lambda row=row, column=column: set_tile(row, column))
+        board[row][column] = tk.Button(frame, text="", font=("Calibri", 50, "bold"), background=color_black, foreground=color_dark_blue, width=4, height=1, command=lambda row=row, column=column: set_tile(row, column))
         board[row][column].grid(row=row+1,column=column)
 
-button = tk.Button(frame, text="restart", font=("Calibri", 20), background=color_purple, foreground="white", command=new_game)
+button = tk.Button(frame, text="restart", font=("Calibri", 20), background=color_black, foreground="white", command=new_game)
 button.grid(row=4, column=0, columnspan = 3, sticky="we")
 
 frame.pack()
