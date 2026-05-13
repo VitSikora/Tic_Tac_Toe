@@ -4,6 +4,9 @@ import tkinter as tk
 def set_tile(row, column):
     global curr_player
 
+    if (game_over):
+        return
+
     if board[row][column]["text"] != "":
         return
     
@@ -28,10 +31,15 @@ def check_winner():
             label.config(text=board[row][0]["text"]+" is the winner", foreground=color_yellow)
             for column in range (3):
                 board[row][column].config(foreground=color_yellow)
-            
+            game_over = True
+            return
     
-
-
+    for column in range (3):
+        if (board[0][column]["text"] == board [1][column]["text"] ==board[2][column]["text"]
+            and board [0][column]["text"] != ""):
+            label.config(text=board[0][column]["text"]+" is the winner, foreground=color_yellow")
+            game_over = True
+            return
 
 def new_game():
     pass
@@ -43,8 +51,8 @@ board = [[0, 0, 0],
          [0, 0, 0], 
          [0, 0, 0]]
 
-color_purple = "#F7A2F2"
-color_dark_blue = "#1B43F8"
+color_purple = "#F7D2F4"
+color_dark_blue = "#123CF8"
 color_yellow = "#DAFD15"
 color_light_blue = "#ADD8E6"
 
